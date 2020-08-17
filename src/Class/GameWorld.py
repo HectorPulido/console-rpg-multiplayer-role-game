@@ -16,13 +16,15 @@ class GameWorld():
 
         return x, y
 
+    def get_description_of_identifier(self, identifier):
+        return self.world_objects[identifier]["obj"].description
+
     def get_data_of_point_relative(self, identifier, x: int, y: int):
         object_to_move = self.world_objects[identifier]
         x = object_to_move["x"] + x
         y = object_to_move["y"] + y
         x, y = self.regularize_coordinates(x, y)
         return self.world_map[x][y]
-
 
     def get_data_of_point(self, x: int, y: int):
         x, y = self.regularize_coordinates(x, y)
@@ -78,7 +80,7 @@ class GameWorld():
 
     def destroy_object(self, identifier: str):
         object_to_move = self.world_objects[identifier]
-        x = object_to_move["x"] 
-        y = object_to_move["y"] 
+        x = object_to_move["x"]
+        y = object_to_move["y"]
         self.world_map[x][y] = None
         return self.world_objects.pop(identifier)

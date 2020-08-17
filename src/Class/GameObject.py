@@ -2,12 +2,11 @@ import random
 
 
 class GameObject:
-    def __init__(self, properties: dict, description: str, callbacks: dict):
+    def __init__(self, properties: dict, description: str):
         self.properties = properties
         self.description = description
-        self.callbacks = callbacks
 
-    def calc_damage(self, other_defense: int): 
+    def calc_damage(self, other_defense: int):
         if "attack" not in self.properties:
             return None
         if "level" not in self.properties:
@@ -32,11 +31,6 @@ class GameObject:
             return None
 
         is_alive = self.properties["health"] > 0
-
-        if "on_die" not in self.callbacks:
-            return None
-
-        self.callbacks["on_die"]()
 
         return is_alive
 
